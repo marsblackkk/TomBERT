@@ -444,23 +444,23 @@ def main():
 
     ## Required parameters
     parser.add_argument("--data_dir",
-                        default='../absa_data/twitter',
+                        default='absa_data/twitter',
                         type=str,
-                        required=True,
+                        required=False,
                         help="The input data dir. Should contain the .tsv files (or other data files) for the task.")
-    parser.add_argument("--bert_model", default=None, type=str, required=True,
+    parser.add_argument("--bert_model", default=None, type=str, required=False,
                         help="Bert pre-trained model selected in the list: bert-base-uncased, "
                         "bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, "
                         "bert-base-multilingual-cased, bert-base-chinese.")
     parser.add_argument("--task_name",
                         default='twitter',
                         type=str,
-                        required=True,
+                        required=False,
                         help="The name of the task to train.")
     parser.add_argument("--output_dir",
-                        default=None,
+                        default="output",
                         type=str,
-                        required=True,
+                        required=False,
                         help="The output directory where the model predictions and checkpoints will be written.")
 
     ## Other parameters
@@ -530,7 +530,7 @@ def main():
                              "0 (default value): dynamic loss scaling.\n"
                              "Positive power of 2: static loss scaling value.\n")
     parser.add_argument('--fine_tune_cnn', action='store_true', help='fine tune pre-trained CNN if True')
-    parser.add_argument('--resnet_root', default='./resnet', help='path the pre-trained cnn models')
+    parser.add_argument('--resnet_root', default='resnet', help='path the pre-trained cnn models')
     parser.add_argument('--crop_size', type=int, default=224, help='crop size of image')
     parser.add_argument('--path_image', default='../pytorch-pretrained-BERT/twitter_subimages/', help='path to images')
     parser.add_argument('--mm_model', default='TomBert', help='model name') # TomBert, TomBertNoPooling, MBert, MBertNoPooling, ResBert
@@ -550,9 +550,9 @@ def main():
     print("*"*50)
 
     if args.task_name == "twitter":        # this refers to twitter-2017 dataset
-        args.path_image = "../pytorch-pretrained-BERT/twitter_subimages/"
+        args.path_image = "../../data/TomBERT/twitter2015_images/"
     elif args.task_name == "twitter2015":  # this refers to twitter-2015 dataset
-        args.path_image = "../pytorch-pretrained-BERT/twitter15_images/"
+        args.path_image = "../../data/TomBERT/twitter2017_images/"
     else:
         print("The task name is not right!")
 
